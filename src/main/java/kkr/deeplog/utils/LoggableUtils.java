@@ -3,10 +3,10 @@ package kkr.deeplog.utils;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+import kkr.deeplog.Loggable;
+
 import org.apache.log4j.spi.LocationInfo;
 import org.apache.log4j.spi.LoggingEvent;
-
-import com.capgemini.log.Loggable;
 
 public class LoggableUtils {
 

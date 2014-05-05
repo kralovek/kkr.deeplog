@@ -1,5 +1,6 @@
 package kkr.deeplog.layout;
 
+import kkr.deeplog.Loggable;
 import kkr.deeplog.data.DeepId;
 import kkr.deeplog.data.DeepLevel;
 import kkr.deeplog.parser.DeepLoggingPatternParser;
@@ -10,8 +11,6 @@ import org.apache.log4j.EnhancedPatternLayout;
 import org.apache.log4j.helpers.PatternParser;
 import org.apache.log4j.spi.LoggingEvent;
 import org.apache.log4j.spi.OptionHandler;
-
-import com.capgemini.log.Loggable;
 
 public class DeepPatternLayout extends EnhancedPatternLayout implements
 		OptionHandler {

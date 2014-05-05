@@ -1,10 +1,9 @@
 package kkr.deeplog.converter;
 
+import kkr.deeplog.Loggable;
 import kkr.deeplog.utils.LoggableUtils;
 
 import org.apache.log4j.spi.LoggingEvent;
-
-import com.capgemini.log.Loggable;
 
 public class DeepMessagePatternConverter extends DeepPatternConverter {
 	private static final DeepMessagePatternConverter INSTANCE = new DeepMessagePatternConverter();

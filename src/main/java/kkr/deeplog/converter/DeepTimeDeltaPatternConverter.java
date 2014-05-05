@@ -1,13 +1,12 @@
 package kkr.deeplog.converter;
 
+import kkr.deeplog.Loggable;
 import kkr.deeplog.data.DeepId;
 import kkr.deeplog.data.DeepLevel;
 import kkr.deeplog.utils.LoggableUtils;
 
 import org.apache.log4j.helpers.LogLog;
 import org.apache.log4j.spi.LoggingEvent;
-
-import com.capgemini.log.Loggable;
 
 public class DeepTimeDeltaPatternConverter extends DeepPatternConverter {
 
