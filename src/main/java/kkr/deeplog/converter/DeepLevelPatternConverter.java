@@ -6,11 +6,12 @@ import kkr.deeplog.data.DeepLevel;
 import org.apache.log4j.spi.LoggingEvent;
 
 public class DeepLevelPatternConverter extends DeepPatternConverter {
-	private static final DeepLevelPatternConverter INSTANCE = new DeepLevelPatternConverter();
+	// private static final DeepLevelPatternConverter INSTANCE = new DeepLevelPatternConverter();
 
 	public static DeepLevelPatternConverter newInstance(
 			final String[] options) {
-		return INSTANCE;
+		DeepLevelPatternConverter newInstance = new DeepLevelPatternConverter();
+		return newInstance;
 	}
 
 	private DeepLevelPatternConverter() {

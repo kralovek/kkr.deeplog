@@ -3,11 +3,11 @@ package kkr.deeplog.converter;
 import org.apache.log4j.spi.LoggingEvent;
 
 public class DeepIdPatternConverter extends DeepPatternConverter {
-	private static final DeepIdPatternConverter INSTANCE = new DeepIdPatternConverter();
+	// private static final DeepIdPatternConverter INSTANCE = new DeepIdPatternConverter();
 
 	public static DeepIdPatternConverter newInstance(
 			final String[] options) {
-		return INSTANCE;
+		return new DeepIdPatternConverter();
 	}
 
 	private DeepIdPatternConverter() {

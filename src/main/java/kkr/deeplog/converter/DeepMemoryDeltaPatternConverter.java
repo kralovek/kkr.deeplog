@@ -9,11 +9,11 @@ import kkr.deeplog.utils.MemoryUtils;
 import org.apache.log4j.spi.LoggingEvent;
 
 public class DeepMemoryDeltaPatternConverter extends DeepPatternConverter {
-	private static final DeepMemoryDeltaPatternConverter INSTANCE = new DeepMemoryDeltaPatternConverter();
+	// private static final DeepMemoryDeltaPatternConverter INSTANCE = new DeepMemoryDeltaPatternConverter();
 
 	public static DeepMemoryDeltaPatternConverter newInstance(
 			final String[] options) {
-		return INSTANCE;
+		return new DeepMemoryDeltaPatternConverter();
 	}
 
 	private DeepMemoryDeltaPatternConverter() {

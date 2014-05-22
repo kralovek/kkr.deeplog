@@ -5,11 +5,11 @@ import kkr.deeplog.utils.MemoryUtils;
 import org.apache.log4j.spi.LoggingEvent;
 
 public class DeepMemoryPatternConverter extends DeepPatternConverter {
-	private static final DeepMemoryPatternConverter INSTANCE = new DeepMemoryPatternConverter();
+	//private static final DeepMemoryPatternConverter INSTANCE = new DeepMemoryPatternConverter();
 
 	public static DeepMemoryPatternConverter newInstance(
 			final String[] options) {
-		return INSTANCE;
+		return new DeepMemoryPatternConverter();
 	}
 
 	private DeepMemoryPatternConverter() {

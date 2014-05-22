@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class DeepLevel {
 
-	private static Map<String, List<DeepLevel>> levelsLayout = Collections
+	public static Map<String, List<DeepLevel>> levelsLayout = Collections
 			.synchronizedMap(new HashMap<String, List<DeepLevel>>());
 
 	private long time;
@@ -88,5 +88,9 @@ public class DeepLevel {
 
 	private static long memory() {
 		return 0;
+	}
+	
+	public String toString() {
+		return "[" + level + "] " + (ok ? "OK" : "KO");
 	}
 }

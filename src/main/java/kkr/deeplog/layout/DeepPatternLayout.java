@@ -49,9 +49,10 @@ public class DeepPatternLayout extends EnhancedPatternLayout implements
 				return super.format(event);
 			} else if (message instanceof Loggable.BEGIN) {
 				DeepId deepId = new DeepId(event.getThreadName(), layoutId);
-				DeepLevel.addNewLevel(deepId, event.getTimeStamp(),
-						MemoryUtils.memory());
-				return acceptBegin ? super.format(event) : "";
+				DeepLevel.addNewLevel(deepId,
+						event.getTimeStamp(), MemoryUtils.memory());
+				String retval = acceptBegin ? super.format(event) : "";
+				return retval;
 			} else if (message instanceof Loggable.END) {
 				String text = acceptEnd ? super.format(event) : "";
 				DeepId deepId = new DeepId(event.getThreadName(), layoutId);
@@ -68,28 +69,6 @@ public class DeepPatternLayout extends EnhancedPatternLayout implements
 				deepLevel.setOk(false);
 				return acceptOk ? super.format(event) : "";
 			}
-			/*
-			 * if (LoggableUtils.instanceOfLoggable(event.getMessage(),
-			 * Loggable.BEGIN.class)) { DeepId deepId = new
-			 * DeepId(event.getThreadName(), layoutId);
-			 * DeepLevel.addNewLevel(deepId, event.getTimeStamp()); return
-			 * acceptBegin ? super.format(event) : ""; } else if
-			 * (LoggableUtils.instanceOfLoggable(event.getMessage(),
-			 * Loggable.END.class)) { String text = acceptEnd ?
-			 * super.format(event) : ""; DeepId deepId = new
-			 * DeepId(event.getThreadName(), layoutId);
-			 * DeepLevel.removeLastLevel(deepId); return text; } else if
-			 * (LoggableUtils.instanceOfLoggable(event.getMessage(),
-			 * Loggable.OK.class)) { DeepId deepId = new
-			 * DeepId(event.getThreadName(), layoutId); DeepLevel deepLevel =
-			 * DeepLevel.getLastLevel(deepId); deepLevel.setOk(true); return
-			 * acceptOk ? super.format(event) : ""; } else if
-			 * (LoggableUtils.instanceOfLoggable(event.getMessage(),
-			 * Loggable.KO.class)) { DeepId deepId = new
-			 * DeepId(event.getThreadName(), layoutId); DeepLevel deepLevel =
-			 * DeepLevel.getLastLevel(deepId); deepLevel.setOk(false); return
-			 * acceptOk ? super.format(event) : ""; }
-			 */
 		}
 		return super.format(event);
 	}

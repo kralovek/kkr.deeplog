@@ -4,7 +4,7 @@ import org.apache.log4j.pattern.LoggingEventPatternConverter;
 
 public abstract class DeepPatternConverter extends LoggingEventPatternConverter {
 	private Long layoutId;
-	
+
 	protected DeepPatternConverter(final String name, final String style) {
 		super(name, style);
 	}
