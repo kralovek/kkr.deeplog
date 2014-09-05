@@ -17,18 +17,25 @@ public class LoggableUtils {
 		if (object instanceof String) {
 			String string = (String) object;
 			String name;
-			if (string.startsWith(name = "BEGIN")) {
-				return string.length() > name.length() + 2 ? new Loggable.BEGIN(string.substring(name.length() + 1)) : Loggable.BEGIN;
-			} else if (string.startsWith(name = "END")) {
-				return string.length() > name.length() + 2 ? new Loggable.END(string.substring(name.length() + 1)) : Loggable.END;
-			} else if (string.startsWith(name = "OK")) {
-				return string.length() > name.length() + 2 ? new Loggable.OK(string.substring(name.length() + 1)) : Loggable.OK;
-			} else if (string.startsWith(name = "KO")) {
-				return string.length() > name.length() + 2 ? new Loggable.KO(string.substring(name.length() + 1)) : Loggable.KO;
-			} else if (string.startsWith(name = "INIT_ALL")) {
-				return string.length() > name.length() + 2 ? new Loggable.INIT_ALL(string.substring(name.length() + 1)) : Loggable.INIT_ALL;
-			} else if (string.startsWith(name = "INIT")) {
-				return string.length() > name.length() + 2 ? new Loggable.INIT(string.substring(name.length() + 1)) : Loggable.INIT;
+			if (isKeyword(string, name = "BEGIN")) {
+				return string.length() > name.length() + 2 ? new Loggable.BEGIN(
+						string.substring(name.length() + 1)) : Loggable.BEGIN;
+			} else if (isKeyword(string, name = "END")) {
+				return string.length() > name.length() + 2 ? new Loggable.END(
+						string.substring(name.length() + 1)) : Loggable.END;
+			} else if (isKeyword(string, name = "OK")) {
+				return string.length() > name.length() + 2 ? new Loggable.OK(
+						string.substring(name.length() + 1)) : Loggable.OK;
+			} else if (isKeyword(string, name = "KO")) {
+				return string.length() > name.length() + 2 ? new Loggable.KO(
+						string.substring(name.length() + 1)) : Loggable.KO;
+			} else if (isKeyword(string, name = "INIT_ALL")) {
+				return string.length() > name.length() + 2 ? new Loggable.INIT_ALL(
+						string.substring(name.length() + 1))
+						: Loggable.INIT_ALL;
+			} else if (isKeyword(string, name = "INIT")) {
+				return string.length() > name.length() + 2 ? new Loggable.INIT(
+						string.substring(name.length() + 1)) : Loggable.INIT;
 			}
 		} else {
 			Loggable.BASE BASE = null;
@@ -70,6 +77,17 @@ public class LoggableUtils {
 			return BASE;
 		}
 		return object;
+	}
+
+	private static boolean isKeyword(String string, String keyword) {
+		if (!string.startsWith(keyword)) {
+			return false;
+		}
+		if (string.length() == keyword.length()) {
+			return true;
+		}
+		char c = string.charAt(keyword.length());
+		return !Character.isLetterOrDigit(c) && c != '_';
 	}
 
 	public static LoggingEvent modifyLoggingEvent(Loggable.BASE BASE,
