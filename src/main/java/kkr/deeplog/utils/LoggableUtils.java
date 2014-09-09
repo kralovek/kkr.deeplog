@@ -106,7 +106,7 @@ public class LoggableUtils {
 						.getLocationInformation().getLineNumber());
 		LoggingEvent newEvent = new LoggingEvent(event.getFQNOfLoggerClass(),
 				event.getLogger(), event.getTimeStamp(), event.getLevel(),
-				event.getMessage(), event.getThreadName(),
+				BASE.getMessage(), event.getThreadName(),
 				event.getThrowableInformation(), event.getNDC(),
 				newLocationInfo, event.getProperties());
 		return newEvent;
