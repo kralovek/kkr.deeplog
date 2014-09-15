@@ -20,7 +20,7 @@ public interface Loggable {
 		}
 
 		public String toString() {
-			return data.get(MESSAGE) != null ? data.get(MESSAGE).toString() : this.getClass().getSimpleName();
+			return data.get(MESSAGE) != null ? data.get(MESSAGE).toString() : "";
 		}
 
 		public Object getMessage() {

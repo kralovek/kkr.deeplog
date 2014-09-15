@@ -74,7 +74,7 @@ public class DeepSymbolPatternConverter extends DeepPatternConverter implements
 
 	public void format(LoggingEvent event, StringBuffer toAppendTo) {
 		if (event.getMessage() != null) {
-			Object message = LoggableUtils.adaptLoggable(event.getMessage());
+			Object message = event.getMessage();
 			if (message instanceof Loggable.BEGIN) {
 				toAppendTo.append(symBegin);
 				return;

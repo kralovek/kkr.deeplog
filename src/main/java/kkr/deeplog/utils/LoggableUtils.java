@@ -19,22 +19,30 @@ public class LoggableUtils {
 			String name;
 			if (isKeyword(string, name = "BEGIN")) {
 				return string.length() > name.length() + 2 ? new Loggable.BEGIN(
-						string.substring(name.length() + 1).trim()) : Loggable.BEGIN;
+						string.substring(name.length() + 1).trim())
+						: Loggable.BEGIN;
 			} else if (isKeyword(string, name = "END")) {
 				return string.length() > name.length() + 2 ? new Loggable.END(
-						string.substring(name.length() + 1).trim()) : Loggable.END;
+						string.substring(name.length() + 1).trim())
+						: Loggable.END;
 			} else if (isKeyword(string, name = "OK")) {
 				return string.length() > name.length() + 2 ? new Loggable.OK(
-						string.substring(name.length() + 1).trim()) : Loggable.OK;
+						string.substring(name.length() + 1).trim())
+						: Loggable.OK;
 			} else if (isKeyword(string, name = "KO")) {
 				return string.length() > name.length() + 2 ? new Loggable.KO(
-						string.substring(name.length() + 1).trim()) : Loggable.KO;
+						string.substring(name.length() + 1).trim())
+						: Loggable.KO;
 			} else if (isKeyword(string, name = "INIT_ALL")) {
 				return string.length() > name.length() + 2 ? new Loggable.INIT_ALL(
-						string.substring(name.length() + 1).trim())	: Loggable.INIT_ALL;
+						string.substring(name.length() + 1).trim())
+						: Loggable.INIT_ALL;
 			} else if (isKeyword(string, name = "INIT")) {
 				return string.length() > name.length() + 2 ? new Loggable.INIT(
-						string.substring(name.length() + 1).trim()) : Loggable.INIT;
+						string.substring(name.length() + 1).trim())
+						: Loggable.INIT;
+			} else {
+				new Loggable.BASE(object);
 			}
 		} else {
 			Loggable.BASE BASE = null;
@@ -91,23 +99,28 @@ public class LoggableUtils {
 
 	public static LoggingEvent modifyLoggingEvent(Loggable.BASE BASE,
 			LoggingEvent event) {
-		if (BASE.getData() == null || BASE.getData().isEmpty()) {
-			return event;
+		LocationInfo newLocationInfo;
+		if (BASE.getData().isEmpty()) {
+			newLocationInfo = new LocationInfo(event.getLocationInformation()
+					.getFileName(), //
+					event.getLocationInformation().getClassName(), //
+					event.getLocationInformation().getMethodName(), //
+					event.getLocationInformation().getLineNumber());
+		} else {
+			newLocationInfo = new LocationInfo( //
+					BASE.getFile() != null ? BASE.getFile() : event
+							.getLocationInformation().getFileName(), //
+					BASE.getClassname() != null ? BASE.getClassname() : event
+							.getLocationInformation().getClassName(), //
+					BASE.getMethod() != null ? BASE.getMethod() : event
+							.getLocationInformation().getMethodName(), //
+					BASE.getLine() != null ? BASE.getLine() : event
+							.getLocationInformation().getLineNumber());
 		}
-		LocationInfo newLocationInfo = new LocationInfo( //
-				BASE.getFile() != null ? BASE.getFile() : event
-						.getLocationInformation().getFileName(), //
-				BASE.getClassname() != null ? BASE.getClassname() : event
-						.getLocationInformation().getClassName(), //
-				BASE.getMethod() != null ? BASE.getMethod() : event
-						.getLocationInformation().getMethodName(), //
-				BASE.getLine() != null ? BASE.getLine() : event
-						.getLocationInformation().getLineNumber());
 		LoggingEvent newEvent = new LoggingEvent(event.getFQNOfLoggerClass(),
 				event.getLogger(), event.getTimeStamp(), event.getLevel(),
-				BASE.getMessage(), event.getThreadName(),
-				event.getThrowableInformation(), event.getNDC(),
-				newLocationInfo, event.getProperties());
+				BASE, event.getThreadName(), event.getThrowableInformation(),
+				event.getNDC(), newLocationInfo, event.getProperties());
 		return newEvent;
 	}
 }

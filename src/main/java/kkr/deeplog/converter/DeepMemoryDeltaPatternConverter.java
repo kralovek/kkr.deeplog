@@ -22,7 +22,7 @@ public class DeepMemoryDeltaPatternConverter extends DeepPatternConverter {
 
 	public void format(LoggingEvent event, StringBuffer toAppendTo) {
 		if (event.getMessage() != null) {
-			Object message = LoggableUtils.adaptLoggable(event.getMessage());
+			Object message = event.getMessage();
 			if (message instanceof Loggable.END) {
 				DeepId deepId = new DeepId(event.getThreadName(), getLayoutId());
 				DeepLevel deepLevel = DeepLevel.getLastLevel(deepId);
