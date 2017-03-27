@@ -51,8 +51,6 @@ public class DeepBridgePatternConverter extends
 	 */
 	private boolean handlesExceptions;
 
-	private long layoutId;
-
 	/**
 	 * Create a new instance.
 	 * 
@@ -60,7 +58,6 @@ public class DeepBridgePatternConverter extends
 	 *            pattern, may not be null.
 	 */
 	public DeepBridgePatternConverter(long layoutId, final String pattern) {
-		this.layoutId = layoutId;
 		next = null;
 		handlesExceptions = false;
 

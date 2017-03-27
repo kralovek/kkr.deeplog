@@ -1,7 +1,6 @@
 package kkr.deeplog.converter;
 
 import kkr.deeplog.Loggable;
-import kkr.deeplog.utils.LoggableUtils;
 
 import org.apache.log4j.spi.LoggingEvent;
 

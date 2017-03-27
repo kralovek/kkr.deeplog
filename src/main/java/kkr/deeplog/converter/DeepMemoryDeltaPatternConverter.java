@@ -3,7 +3,6 @@ package kkr.deeplog.converter;
 import kkr.deeplog.Loggable;
 import kkr.deeplog.data.DeepId;
 import kkr.deeplog.data.DeepLevel;
-import kkr.deeplog.utils.LoggableUtils;
 import kkr.deeplog.utils.MemoryUtils;
 
 import org.apache.log4j.spi.LoggingEvent;

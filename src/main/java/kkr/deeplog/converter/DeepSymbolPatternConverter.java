@@ -3,7 +3,6 @@ package kkr.deeplog.converter;
 import kkr.deeplog.Loggable;
 import kkr.deeplog.data.DeepId;
 import kkr.deeplog.data.DeepLevel;
-import kkr.deeplog.utils.LoggableUtils;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.helpers.LogLog;
@@ -20,7 +19,6 @@ public class DeepSymbolPatternConverter extends DeepPatternConverter implements
 	private static String SYM_FATAL = "###";
 	private static String SYM_WARNING = " W ";
 	private static String SYM_MESSAGE = " - ";
-	private static String SYM_UNKNOWN = "???";
 
 	private String symBegin = SYM_BEGIN;
 	private String symEndok = SYM_ENDOK;

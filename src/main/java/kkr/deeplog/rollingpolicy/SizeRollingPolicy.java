@@ -105,8 +105,8 @@ public final class SizeRollingPolicy implements RollingPolicy, OptionHandler {
 	}
 
 	protected final void parseFileNamePattern() {
-		List converters = new ArrayList();
-		List fields = new ArrayList();
+		List<Object> converters = new ArrayList<Object>();
+		List<Object> fields = new ArrayList<Object>();
 
 		ExtrasPatternParser.parse(this.fileNamePatternStr, converters, fields,
 				null, ExtrasPatternParser.getFileNamePatternRules());
