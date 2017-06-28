@@ -1,0 +1,89 @@
+
+log4j.properties
+
+RollingPolicy
+    kkr.deeplog.rollingpolicy.SizeRollingPolicy
+        Parameters:
+            - FileNamePattern
+                Base name of the output log file.
+                This base name MAY NOT be terminated by ".zip" of ".gz"
+                Use the parameter compressMethod to specify the conversion method
+                The value is a standard text containing Pattern Converters defined by 
+                org.apache.log4j.pattern.ExtrasPatternParser  
+            - CompressMethod
+                - zip  - rolling files compressed by ZIP
+                - gz   - rolling files compressed by GZ
+                - none - rolling log files are not compressed            
+
+PatternLayout
+    kkr.deeplog.layout.DeepPatternLayout
+        Extenstion of org.apache.log4j.EnhancedPatternLayout
+        Parameters:
+            - acceptBegin - (true|false) - print log for enter method
+            - acceptEnd   - (true|false) - print log for exit method
+            - acceptOk    - (true|false) - print log before normal return
+            - ConversionPattern 
+                        - configuration of the printed line using pattern convertors defined by 
+                          org.apache.log4j.pattern.PatternParser
+                        - extended pattern convertors
+
+                            - deepTab         
+                                - Symbol used to print depth tabulator 
+                            - deepSymbol      
+                                - Symbol used for begin/end/ok
+                                - Parameters: 
+                                    - beg: begin of block
+                                    - end: end of block (ok)
+                                    - eer: end of block (ko)
+                                    - war: warning 
+                                    - err: error
+                                    - mes: any other message
+                                - Example:    {beg=-->}{end=<--}{eer=<#-}{mes= - }{war= w }{err= # }
+                            - deepTimeDelta   
+                                - Time interval of block
+                                - Parameters: count of decimal numbers
+                                - Example:    deepTimeDelta{3}
+                            - deepMemoryDelta 
+                                - Difference in free memory between begin/end block 
+                            - deepMemory      
+                                - Free memory  
+                            - deepLevel       
+                                - Current depth level
+                            - deepMark        
+                                - symbol which is printed for specific classes matching some regexp pattern
+                                - Parameters: list of pairs symbol=regexp
+                                - Exemple:    deepMark{ANT=org.apache.tools.ant*}{MAI=com.tool.main.*}{---=*}
+                            - deepId          
+                                - Unique identificator of DeepPatternLayout instance
+
+            
+            
+Source code
+
+public class MyClass {
+    private static final Logger LOG = Logger.getLogger(MyClass.class);
+
+    public static int myStaticMethod() {
+        LOG.trace("BEGIN");
+        try {
+            int retval = 0;
+            // BODY
+            LOG.trace("OK");
+            return retval;
+        } finally {
+            LOG.trace("END");
+        }
+    }
+
+    public void myMethod() {
+        LOG.trace("BEGIN");
+        try {
+            // BODY
+            LOG.trace("OK");
+        } finally {
+            LOG.trace("END");
+        }
+    }
+}
+
+
